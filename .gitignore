@@ -3,4 +3,4 @@
 venv/
 Day */.venv/
 Day */venv/
-100 Days of Code - The Complete Python Pro Bootcamp
+Day */__pycache__/ 
