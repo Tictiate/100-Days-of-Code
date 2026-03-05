@@ -18,37 +18,41 @@ params = {
 }
 url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY'
 r = requests.get(url, params)
-data = r.json()
+data = r.json()["Time Series (Daily)"]
+data_list = [value for (key, value) in data.items()]
 
-today = date.today() - timedelta(days=2)
-yesterday = today - timedelta(days=1)
+yesterday_data = data_list[0]
+day_before_yesterday_data = data_list[1]
 
-today_close = data["Time Series (Daily)"][str(today)]["4. close"]
-yesterday_close = data["Time Series (Daily)"][str(yesterday)]["4. close"]
+yesterday_close = float(yesterday_data["4. close"])
+day_before_yesterday_close = float(day_before_yesterday_data["4. close"])
 
-dif = (float(yesterday_close) - float(today_close))/float(yesterday_close) * 100
-dif.__round__(2)
+dif = (yesterday_close - day_before_yesterday_close)
+up_down = None
+if dif > 0:
+    up_down = "🔺"
+else:
+    up_down = "🔻"
+
+dif_percent = round(dif / yesterday_close) * 100
+print(dif_percent)
 
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
-message = ""
+formatted_articles = []
 def get_news():
-    global message
+    global formatted_articles
     params = {
         "apiKey": os.environ.get("NEWS_API"),
+        "qInTitle": COMPANY_NAME,
         "language": "en",
-        "pageSize": 3,
-        "page": 1
     }
-    url = "https://newsapi.org/v2/everything?q=tesla&from=2026-02-04&sortBy=publishedAt&"
+    url = "https://newsapi.org/v2/everything"
     response = requests.get(url, params)
-    data = response.json()
-    article1 = data["articles"][0]["title"] + "\n" + data["articles"][0]["description"]
-    article2 = data["articles"][1]["title"] + "\n" + data["articles"][1]["description"]
-    article3 = data["articles"][2]["title"] + "\n" + data["articles"][2]["description"]
+    articles = response.json()["articles"]
+    three_articles = articles[:3]
 
-    message = article1 + "\n" + article2 + "\n" + article3
-
+    formatted_articles =[f"{STOCK}: {up_down}{dif_percent}%\nHeadline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
 
 ## STEP 3: Use https://www.twilio.com
 # Send a separate message with the percentage change and each article's title and description to your phone number.
@@ -56,18 +60,16 @@ def send_message():
     account_sid = os.environ.get("TWILIO_ACC")
     auth_token = os.environ.get("TWILIO_API")
     client = Client(account_sid, auth_token)
-    msg = client.messages.create(
-        from_='+13254686852',
-        body=message,
-        to=os.environ.get("PHONE_NUMBER")
-    )
 
-if dif >= 5 or dif <= -5:
+    for article in formatted_articles:
+        msg = client.messages.create(
+            from_='+13254686852',
+            body=article,
+            to=os.environ.get("PHONE_NUMBER")
+        )
+
+if abs(dif_percent) > 5:
     get_news()
-    if dif >= 5:
-        message = f"TSLA: 🔻{dif}\n" + message
-    else:
-        message = f"TSLA: 🔺{dif}\n" + message
     send_message()
 
 
