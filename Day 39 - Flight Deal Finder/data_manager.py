@@ -1,7 +1,8 @@
 import os
+import time
 import requests
-from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
+from pprint import pprint
 
 # Load environment variables from .env file
 load_dotenv()
@@ -11,18 +12,18 @@ SHEETY_PRICES_ENDPOINT = "https://api.sheety.co/e2379b90be0ad1cf36d6e3b12dd33f25
 class DataManager:
 
     def __init__(self):
-        self._user = os.environ["SHEETY_USERNAME"]
-        self._password = os.environ["SHEETY_PASSWORD"]
-        self._authorization = HTTPBasicAuth(self._user, self._password)
         self.destination_data = {}
+        self.headers = {
+            "Authorization": f"Basic {os.environ['SHEETY_PASSWORD']}"
+        }
 
     def get_destination_data(self):
         # Use the Sheety API to GET all the data in that sheet and print it out.
-        response = requests.get(url=SHEETY_PRICES_ENDPOINT)
+        response = requests.get(url=SHEETY_PRICES_ENDPOINT, headers=self.headers)
         data = response.json()
+        pprint(data)
         self.destination_data = data["prices"]
         # Try importing pretty print and printing the data out again using pprint() to see it formatted.
-        # pprint(data)
         return self.destination_data
 
     # In the DataManager Class make a PUT request and use the row id from sheet_data
@@ -36,6 +37,24 @@ class DataManager:
             }
             response = requests.put(
                 url=f"{SHEETY_PRICES_ENDPOINT}/{city['id']}",
-                json=new_data
+                json=new_data,
+                headers=self.headers
             )
             print(response.text)
+            time.sleep(1)
+
+    def update_lowest_price(self, row_id, new_price):
+        headers = {
+            "Authorization": f"Basic {os.environ['SHEETY_PASSWORD']}"
+        }
+        new_data = {
+            "price": {
+                "lowestPrice": new_price
+            }
+        }
+        response = requests.put(
+            url=f"{SHEETY_PRICES_ENDPOINT}/{row_id}",
+            json=new_data,
+            headers=headers
+        )
+        print(f"Row {row_id} price updated in Sheety to £{new_price}")

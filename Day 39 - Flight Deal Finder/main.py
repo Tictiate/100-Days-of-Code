@@ -13,7 +13,7 @@ flight_search = FlightSearch()
 notification_manager = NotificationManager()
 
 # Set your origin airport
-ORIGIN_CITY_IATA = "LON"
+ORIGIN_CITY_IATA = "BOM"
 
 # ==================== Update the Airport Codes in Google Sheet ====================
 
@@ -28,7 +28,7 @@ data_manager.destination_data = sheet_data
 data_manager.update_destination_codes()
 
 # ==================== Search for Flights and Send Notifications ====================
-tomorrow = datetime.now() + timedelta(days=1)
+tomorrow = datetime.now() + timedelta(days=10)
 six_month_from_today = datetime.now() + timedelta(days=(6 * 30))
 
 for destination in sheet_data:
@@ -39,6 +39,9 @@ for destination in sheet_data:
         from_time=tomorrow,
         to_time=six_month_from_today
     )
+
+    time.sleep(2)
+
     cheapest_flight = find_cheapest_flight(flights)
     if cheapest_flight.price != "N/A" and cheapest_flight.price < destination["lowestPrice"]:
         print(f"Lower price flight found to {destination['city']}!")
@@ -47,3 +50,4 @@ for destination in sheet_data:
                          f"from {cheapest_flight.origin_airport} to {cheapest_flight.destination_airport}, "
                          f"on {cheapest_flight.out_date} until {cheapest_flight.return_date}."
         )
+        data_manager.update_lowest_price(destination["id"], cheapest_flight.price)
