@@ -1,0 +1,36 @@
+2026/03/30-18:09:23.958 1ffb7a Reusing MANIFEST /Users/ishaangandhi/Ishaan/Coding/100 Days of Code/Day 51 - Internet Speed Complain Bot/chrome_profile/Default/IndexedDB/https_www.speedtest.net_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/30-18:09:23.959 1ffb7a Recovering log #46
+2026/03/30-18:09:23.959 1ffb7a Reusing old log /Users/ishaangandhi/Ishaan/Coding/100 Days of Code/Day 51 - Internet Speed Complain Bot/chrome_profile/Default/IndexedDB/https_www.speedtest.net_0.indexeddb.leveldb/000046.log 
+2026/03/30-18:09:23.960 1ffb7a Delete type=2 #45
+2026/03/30-18:09:24.052 1ffb7d Level-0 table #51: started
+2026/03/30-18:09:24.053 1ffb7d Level-0 table #51: 1452 bytes OK
+2026/03/30-18:09:24.057 1ffb7d Delete type=0 #46
+2026/03/30-18:09:24.059 1ffb7d Manual compaction at level-0 from '\x00\x15\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x16\x00\x00\x00' @ 0 : 0; will stop at '\x00\x15\x00\x00\x05' @ 3693 : 1
+2026/03/30-18:09:24.059 1ffb7d Compacting 1@0 + 1@1 files
+2026/03/30-18:09:24.061 1ffb7d Generated table #52@0: 370 keys, 7463 bytes
+2026/03/30-18:09:24.061 1ffb7d Compacted 1@0 + 1@1 files => 7463 bytes
+2026/03/30-18:09:24.063 1ffb7d compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/30-18:09:24.063 1ffb7d Delete type=2 #51
+2026/03/30-18:09:24.064 1ffb7d Manual compaction at level-0 from '\x00\x15\x00\x00\x05' @ 3693 : 1 .. '\x00\x16\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/03/30-18:09:24.067 1ffb7d Level-0 table #54: started
+2026/03/30-18:09:24.068 1ffb7d Level-0 table #54: 5825 bytes OK
+2026/03/30-18:09:24.070 1ffb7d Delete type=2 #48
+2026/03/30-18:09:24.070 1ffb7d Delete type=0 #50
+2026/03/30-18:09:24.071 1ffb7d Manual compaction at level-0 from '\x00\x16\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x17\x00\x00\x00' @ 0 : 0; will stop at '\x00\x17\x00\x00\xc8\x18\x00u\x00s\x00e\x00r\x00_\x00U\x00n\x00i\x00v\x00S\x00p\x00e\x00e\x00d\x00T\x00e\x00s\x00t\x00R\x00e\x00s\x00u\x00l\x00t' @ 3857 : 1
+2026/03/30-18:09:24.071 1ffb7d Compacting 1@0 + 1@1 files
+2026/03/30-18:09:24.073 1ffb7d Generated table #55@0: 503 keys, 9560 bytes
+2026/03/30-18:09:24.073 1ffb7d Compacted 1@0 + 1@1 files => 9560 bytes
+2026/03/30-18:09:24.075 1ffb7d compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/30-18:09:24.076 1ffb7d Delete type=2 #54
+2026/03/30-18:09:24.076 1ffb7a Manual compaction at level-0 from '\x00\x17\x00\x00\xc8\x18\x00u\x00s\x00e\x00r\x00_\x00U\x00n\x00i\x00v\x00S\x00p\x00e\x00e\x00d\x00T\x00e\x00s\x00t\x00R\x00e\x00s\x00u\x00l\x00t' @ 3857 : 1 .. '\x00\x17\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/03/30-18:09:24.078 1ffb7a Level-0 table #57: started
+2026/03/30-18:09:24.079 1ffb7a Level-0 table #57: 4922 bytes OK
+2026/03/30-18:09:24.081 1ffb7a Delete type=0 #53
+2026/03/30-18:09:24.082 1ffb7a Delete type=2 #52
+2026/03/30-18:09:24.083 1ffb7a Manual compaction at level-0 from '\x00\x17\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x18\x00\x00\x00' @ 0 : 0; will stop at '\x00\x17\x00\x00\xc8\x18\x00u\x00s\x00e\x00r\x00_\x00U\x00n\x00i\x00v\x00S\x00p\x00e\x00e\x00d\x00T\x00e\x00s\x00t\x00R\x00e\x00s\x00u\x00l\x00t' @ 4250 : 0
+2026/03/30-18:09:24.083 1ffb7a Compacting 1@0 + 1@1 files
+2026/03/30-18:09:24.085 1ffb7a Generated table #58@0: 462 keys, 7707 bytes
+2026/03/30-18:09:24.085 1ffb7a Compacted 1@0 + 1@1 files => 7707 bytes
+2026/03/30-18:09:24.086 1ffb7a compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/30-18:09:24.086 1ffb7a Delete type=2 #57
+2026/03/30-18:09:24.087 1ffb7a Manual compaction at level-0 from '\x00\x17\x00\x00\xc8\x18\x00u\x00s\x00e\x00r\x00_\x00U\x00n\x00i\x00v\x00S\x00p\x00e\x00e\x00d\x00T\x00e\x00s\x00t\x00R\x00e\x00s\x00u\x00l\x00t' @ 4250 : 0 .. '\x00\x18\x00\x00\x00' @ 0 : 0; will stop at (end)
